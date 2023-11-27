@@ -105,9 +105,11 @@ static inline void btdmpFlushReceiveFifo(int channel)
 /// Setups a BTDMP channel to output audio to the DS speakers.
 ///
 /// Note: Remember to setup REG_SNDEXTCNT from the ARM7 to enable sound output
-/// from the DSP. For example, for 50% DSP output and 50% ARM7 output:
+/// from the DSP. For example, for 50% DSP output and 50% ARM7 output, run this
+/// on the ARM9:
 /// ```
-/// REG_SNDEXTCNT = SNDEXTCNT_ENABLE | SNDEXTCNT_FREQ_32KHZ | SNDEXTCNT_RATIO(4);
+/// soundExtEnable();
+/// soundExtSetRatio(4);
 /// ```
 ///
 /// @param channel The BTDMP channel to use.
