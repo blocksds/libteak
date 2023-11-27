@@ -185,18 +185,23 @@
 
 #define MOD3_IRQ_DISABLE                (0 << 7)
 #define MOD3_IRQ_ENABLE                 (1 << 7) // IE
+#define MOD3_IRQ_MASK                   (1 << 7)
 
 #define MOD3_IRQ_INT0_DISABLE           (0 << 8)
 #define MOD3_IRQ_INT0_ENABLE            (1 << 8) // Enable if IE=1
+#define MOD3_IRQ_INT0_MASK              (1 << 8)
 
 #define MOD3_IRQ_INT1_DISABLE           (0 << 9)
 #define MOD3_IRQ_INT1_ENABLE            (1 << 9) // Enable if IE=1
+#define MOD3_IRQ_INT1_MASK              (1 << 9)
 
 #define MOD3_IRQ_INT2_DISABLE           (0 << 10)
 #define MOD3_IRQ_INT2_ENABLE            (1 << 10) // Enable if IE=1
+#define MOD3_IRQ_INT2_MASK              (1 << 10)
 
 #define MOD3_IRQ_VINT_DISABLE           (0 << 11)
 #define MOD3_IRQ_VINT_ENABLE            (1 << 11) // Enable if IE=1
+#define MOD3_IRQ_VINT_MASK              (1 << 11)
 
 // Normal: push low word then push high word on call; pop high word then pop low
 // word on ret.
