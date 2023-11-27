@@ -108,7 +108,6 @@ static inline void btdmpFlushReceiveFifo(int channel)
 /// from the DSP. For example, for 50% DSP output and 50% ARM7 output, run this
 /// on the ARM9:
 /// ```
-/// soundExtEnable();
 /// soundExtSetRatio(4);
 /// ```
 ///
