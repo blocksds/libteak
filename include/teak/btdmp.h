@@ -115,6 +115,32 @@ static inline void btdmpFlushReceiveFifo(int channel)
 /// @param irq_index The CPU interrupt to use (0 to 2).
 void btdmpSetupOutputSpeakers(int channel, int irq_index);
 
+/// Disables audio output from a BTDMP channel.
+///
+/// @param channel The BTDMP channel to disable.
+void btdmpDisableOutput(int channel);
+
+/// Setups a BTDMP channel to record audio from the DS microphone.
+///
+/// Note: Remember to power on the microphone from the ARM7. You can run this in
+/// the ARM9 to do it:
+/// ```
+/// soundMicPowerOn();
+/// ```
+/// And you can run this to power it off when you're no longer recording:
+/// ```
+/// soundMicPowerOff();
+/// ```
+///
+/// @param channel The BTDMP channel to use.
+/// @param irq_index The CPU interrupt to use (0 to 2).
+void btdmpSetupInputMicrophone(int channel, int irq_index);
+
+/// Disables audio recording from a BTDMP channel.
+///
+/// @param channel The BTDMP channel to disable.
+void btdmpDisableInput(int channel);
+
 /// Checks if the transmit FIFO of a BTDMP channel is full or not.
 ///
 /// @param channel The BTDMP channel to check.
@@ -125,6 +151,18 @@ static inline int btdmpTransmitFifoFull(int channel)
         return 1;
 
     return 0;
+}
+
+/// Checks if the receive FIFO of a BTDMP channel is empty or not.
+///
+/// @param channel The BTDMP channel to check.
+/// @return 1 if the FIFO is empty, 0 otherwise.
+static inline int btdmpReceiveFifoEmpty(int channel)
+{
+    if (REG_BTDMP_RECEIVE_FIFO_STAT(channel) & BTDMP_RECEIVE_FIFO_STAT_NOT_EMPTY)
+        return 0;
+
+    return 1;
 }
 
 #ifdef __cplusplus
