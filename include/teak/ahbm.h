@@ -79,6 +79,8 @@ static inline u16 ahbmIsBusy(void)
 /// @param dma_channel_mask The DMA channels to assign to this AHBM channel.
 static inline void ahbmConfigChannel(int channel, u16 a, u16 b, u16 dma_channel_mask)
 {
+    REG_AHBM_CH_CFG_DMA(channel) = 0;
+
     REG_AHBM_CH_CFG1(channel) = a;
     REG_AHBM_CH_CFG2(channel) = b;
     REG_AHBM_CH_CFG_DMA(channel) = dma_channel_mask;
