@@ -31,3 +31,15 @@ Finally, build the library:
 ```bash
 make
 ```
+
+## 3. Editing assembly files
+
+The assembler of the Teak toolchain doesn't support expanding C-style defines
+and macros. Using magic numbers in the code is bad practice, so this repository
+has a simple python script (in the folder `tools`) that is used to preprocess
+assembly files and expand simple expressions.
+
+All files stored in the `asm` folder are preprocessed and saved to the `source`
+folder. Both files are present in the repository because that way python 3 isn't
+a dependency required to build the library. However, it is required if you want
+to modify the assembly files of the library.
