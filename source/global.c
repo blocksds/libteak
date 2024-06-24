@@ -9,7 +9,8 @@ void teakInit(void)
     icuInit();
 
     // Applications wait for all bits to be 0 before connecting AHBM to DMA.
-    while (ahbmIsBusy());
+    while (ahbmIsBusy())
+        ;
 
     dmaInit();
 }

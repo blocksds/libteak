@@ -14,7 +14,7 @@ extern "C" {
 #define BIT(n) (1 << (n))
 
 /// Aligns struct, arrays, etc, to "m".
-#define ALIGN(m) __attribute__((aligned (m)))
+#define ALIGN(m) __attribute__((aligned(m)))
 
 /// 8 bit unsigned integer.
 typedef uint8_t u8;

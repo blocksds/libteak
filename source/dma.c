@@ -49,8 +49,8 @@ void dmaInit(void)
 // ARM9 to DSP
 // ===========
 
-static void dmaTransferStartArm9ToDspUnsafe(u16 ahbm_channel, u16 dma_channel,
-                                            u32 src, u16 dst, u16 len)
+static void dmaTransferStartArm9ToDspUnsafe(u16 ahbm_channel, u16 dma_channel, u32 src, u16 dst,
+                                            u16 len)
 {
     ahbmResetChannel(ahbm_channel);
 
@@ -74,15 +74,12 @@ static void dmaTransferStartArm9ToDspUnsafe(u16 ahbm_channel, u16 dma_channel,
     REG_DMA_CH_DIM1_DST_STEP = 1;
     REG_DMA_CH_DIM2_DST_STEP = 1;
 
-    REG_DMA_CH_XFER_CONFIG = DMA_CH_XFER_CONFIG_SRC_ARM_AHBM
-                           | DMA_CH_XFER_CONFIG_DST_DSP_DATA
-                           | DMA_CH_XFER_CONFIG_RW_SIMULTANEOUS
-                           | DMA_CH_XFER_SPEED_SLOWEST;
+    REG_DMA_CH_XFER_CONFIG = DMA_CH_XFER_CONFIG_SRC_ARM_AHBM | DMA_CH_XFER_CONFIG_DST_DSP_DATA
+                             | DMA_CH_XFER_CONFIG_RW_SIMULTANEOUS | DMA_CH_XFER_SPEED_SLOWEST;
 
     REG_DMA_CH_UNK_81DC = 0x300; // ???
 
-    ahbmConfigChannel(ahbm_channel,
-                      AHBM_CH_CFG1_SIZE_16BIT | AHBM_CH_CFG1_BURST_INCR,
+    ahbmConfigChannel(ahbm_channel, AHBM_CH_CFG1_SIZE_16BIT | AHBM_CH_CFG1_BURST_INCR,
                       AHBM_CH_CFG2_READ | AHBM_CH_CFG2_USUALLY_ONE,
                       AHBM_CH_CFG_DMA_CONNECT_CH(dma_channel));
 
@@ -110,14 +107,15 @@ s16 dmaTransferArm9ToDsp(u16 dma_channel, u32 src, void *dst, u16 len)
     u16 end = src + (len << 1) - 1;
 
     u16 page_base = src & page_mask;
-    u16 page_end = end & page_mask;
+    u16 page_end  = end & page_mask;
 
     if (page_base != page_end)
         return -4;
 
     // TODO: Is this needed? What if there are two AHBM channels set up at the
     // same time?
-    while (ahbmIsBusy());
+    while (ahbmIsBusy())
+        ;
 
     // AHBM channel to be used for the transfer
     const u16 ahbm_channel = 1;
@@ -153,7 +151,7 @@ s16 dmaTransferArm9ToDspAsync(u16 dma_channel, u32 src, void *dst, u16 len)
     u16 end = src + (len << 1) - 1;
 
     u16 page_base = src & page_mask;
-    u16 page_end = end & page_mask;
+    u16 page_end  = end & page_mask;
 
     if (page_base != page_end)
         return -4;
@@ -169,8 +167,8 @@ s16 dmaTransferArm9ToDspAsync(u16 dma_channel, u32 src, void *dst, u16 len)
 // DSP to ARM9
 // ===========
 
-static void dmaStartTransferDspToArm9Unsafe(u16 ahbm_channel, u16 dma_channel,
-                                            const void *src, u32 dst, u16 len)
+static void dmaStartTransferDspToArm9Unsafe(u16 ahbm_channel, u16 dma_channel, const void *src,
+                                            u32 dst, u16 len)
 {
     ahbmResetChannel(ahbm_channel);
 
@@ -194,15 +192,12 @@ static void dmaStartTransferDspToArm9Unsafe(u16 ahbm_channel, u16 dma_channel,
     REG_DMA_CH_DIM1_DST_STEP = 1;
     REG_DMA_CH_DIM2_DST_STEP = 1;
 
-    REG_DMA_CH_XFER_CONFIG = DMA_CH_XFER_CONFIG_SRC_DSP_DATA
-                           | DMA_CH_XFER_CONFIG_DST_ARM_AHBM
-                           | DMA_CH_XFER_CONFIG_RW_SIMULTANEOUS
-                           | DMA_CH_XFER_SPEED_SLOWEST;
+    REG_DMA_CH_XFER_CONFIG = DMA_CH_XFER_CONFIG_SRC_DSP_DATA | DMA_CH_XFER_CONFIG_DST_ARM_AHBM
+                             | DMA_CH_XFER_CONFIG_RW_SIMULTANEOUS | DMA_CH_XFER_SPEED_SLOWEST;
 
     REG_DMA_CH_UNK_81DC = 0x300; // ???
 
-    ahbmConfigChannel(ahbm_channel,
-                      AHBM_CH_CFG1_SIZE_16BIT | AHBM_CH_CFG1_BURST_INCR,
+    ahbmConfigChannel(ahbm_channel, AHBM_CH_CFG1_SIZE_16BIT | AHBM_CH_CFG1_BURST_INCR,
                       AHBM_CH_CFG2_WRITE | AHBM_CH_CFG2_USUALLY_ONE,
                       AHBM_CH_CFG_DMA_CONNECT_CH(dma_channel));
 
@@ -230,14 +225,15 @@ s16 dmaTransferDspToArm9(u16 dma_channel, const void *src, u32 dst, u16 len)
     u16 end = dst + (len << 1) - 1;
 
     u16 page_base = dst & page_mask;
-    u16 page_end = end & page_mask;
+    u16 page_end  = end & page_mask;
 
     if (page_base != page_end)
         return -4;
 
     // TODO: Is this needed? What if there are two AHBM channels set up at the
     // same time?
-    while (ahbmIsBusy());
+    while (ahbmIsBusy())
+        ;
 
     // AHBM channel to be used for the transfer
     const u16 ahbm_channel = 2;
@@ -273,7 +269,7 @@ s16 dmaTransferDspToArm9Async(u16 dma_channel, const void *src, u32 dst, u16 len
     u16 end = dst + (len << 1) - 1;
 
     u16 page_base = dst & page_mask;
-    u16 page_end = end & page_mask;
+    u16 page_end  = end & page_mask;
 
     if (page_base != page_end)
         return -4;

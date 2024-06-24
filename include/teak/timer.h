@@ -17,17 +17,17 @@ extern "C" {
 
 #include <teak/types.h>
 
-#define TMR_REG_BASE                0x8020
-#define TMR_CHANNEL_LEN             0x10
+#define TMR_REG_BASE    0x8020
+#define TMR_CHANNEL_LEN 0x10
 
-#define REG_TMR_CONTROL(x)          (*(vu16 *)(TMR_REG_BASE + (x) * TMR_CHANNEL_LEN + 0x00))
+#define REG_TMR_CONTROL(x) (*(vu16 *)(TMR_REG_BASE + TMR_CHANNEL_LEN * (x) + 0x00))
 
-#define TMR_CONTROL_PRESCALE_1          (0 << 0)
-#define TMR_CONTROL_PRESCALE_2          (1 << 0)
-#define TMR_CONTROL_PRESCALE_4          (2 << 0)
-#define TMR_CONTROL_PRESCALE_16         (3 << 0)
+#define TMR_CONTROL_PRESCALE_1  (0 << 0)
+#define TMR_CONTROL_PRESCALE_2  (1 << 0)
+#define TMR_CONTROL_PRESCALE_4  (2 << 0)
+#define TMR_CONTROL_PRESCALE_16 (3 << 0)
 
-#define TMR_CONTROL_PRESCALE_MASK       (3 << 0)
+#define TMR_CONTROL_PRESCALE_MASK (3 << 0)
 
 #define TMR_CONTROL_MODE_ONCE           (0 << 2)
 #define TMR_CONTROL_MODE_RELOAD         (1 << 2)
@@ -37,49 +37,49 @@ extern "C" {
 #define TMR_CONTROL_MODE_WATCHDOG_NMI   (5 << 2)
 #define TMR_CONTROL_MODE_WATCHDOG_IRQ   (6 << 2)
 
-#define TMR_CONTROL_MODE_MASK           (7 << 2)
+#define TMR_CONTROL_MODE_MASK (7 << 2)
 
-#define TMR_CONTROL_POLARITY_NORMAL     (0 << 6)
-#define TMR_CONTROL_POLARITY_INVERT     (1 << 6)
+#define TMR_CONTROL_POLARITY_NORMAL (0 << 6)
+#define TMR_CONTROL_POLARITY_INVERT (1 << 6)
 
-#define TMR_CONTROL_CLEAR_OUTPUT        (1 << 7)
+#define TMR_CONTROL_CLEAR_OUTPUT (1 << 7)
 
-#define TMR_CONTROL_UNPAUSE             (0 << 8)
-#define TMR_CONTROL_PAUSE               (1 << 8)
+#define TMR_CONTROL_UNPAUSE (0 << 8)
+#define TMR_CONTROL_PAUSE   (1 << 8)
 
-#define TMR_CONTROL_FREEZE_COUNTER      (0 << 9)
-#define TMR_CONTROL_UNFREEZE_COUNTER    (1 << 9)
-#define TMR_CONTROL_FREEZE_MASK         (1 << 9)
+#define TMR_CONTROL_FREEZE_COUNTER   (0 << 9)
+#define TMR_CONTROL_UNFREEZE_COUNTER (1 << 9)
+#define TMR_CONTROL_FREEZE_MASK      (1 << 9)
 
-#define TMR_CONTROL_RESTART             (1 << 10)
+#define TMR_CONTROL_RESTART (1 << 10)
 
 /// Cause a trap when the timer reaches 0. Remember to enable autoclear.
-#define TMR_CONTROL_BREAKPOINT          (1 << 11)
+#define TMR_CONTROL_BREAKPOINT (1 << 11)
 
-#define TMR_CONTROL_CLOCK_INTERNAL      (0 << 12)
-#define TMR_CONTROL_CLOCK_EXTERNAL      (1 << 12) // Unused?
+#define TMR_CONTROL_CLOCK_INTERNAL (0 << 12)
+#define TMR_CONTROL_CLOCK_EXTERNAL (1 << 12) // Unused?
 
-#define TMR_CONTROL_UNKNOWN             (1 << 13)
+#define TMR_CONTROL_UNKNOWN (1 << 13)
 
-#define TMR_CONTROL_AUTOCLEAR_OFF       (0 << 14)
-#define TMR_CONTROL_AUTOCLEAR_2_CYCLES  (1 << 14)
-#define TMR_CONTROL_AUTOCLEAR_4_CYCLES  (2 << 14)
-#define TMR_CONTROL_AUTOCLEAR_8_CYCLES  (3 << 14)
+#define TMR_CONTROL_AUTOCLEAR_OFF      (0 << 14)
+#define TMR_CONTROL_AUTOCLEAR_2_CYCLES (1 << 14)
+#define TMR_CONTROL_AUTOCLEAR_4_CYCLES (2 << 14)
+#define TMR_CONTROL_AUTOCLEAR_8_CYCLES (3 << 14)
 
-#define TMR_CONTROL_AUTOCLEAR_MASK      (3 << 14)
+#define TMR_CONTROL_AUTOCLEAR_MASK (3 << 14)
 
-#define REG_TMR_TRIGGER(x)          (*(vu16 *)(TMR_REG_BASE + (x) * TMR_CHANNEL_LEN + 0x02))
+#define REG_TMR_TRIGGER(x) (*(vu16 *)(TMR_REG_BASE + TMR_CHANNEL_LEN * (x) + 0x02))
 
 // Start value and reload value. Set it before starting the timer.
-#define REG_TMR_RELOAD_LO(x)        (*(vu16 *)(TMR_REG_BASE + (x) * TMR_CHANNEL_LEN + 0x04))
-#define REG_TMR_RELOAD_HI(x)        (*(vu16 *)(TMR_REG_BASE + (x) * TMR_CHANNEL_LEN + 0x06))
+#define REG_TMR_RELOAD_LO(x) (*(vu16 *)(TMR_REG_BASE + TMR_CHANNEL_LEN * (x) + 0x04))
+#define REG_TMR_RELOAD_HI(x) (*(vu16 *)(TMR_REG_BASE + TMR_CHANNEL_LEN * (x) + 0x06))
 
 // Current value of the timer.
-#define REG_TMR_COUNTER_LO(x)       (*(vu16 *)(TMR_REG_BASE + (x) * TMR_CHANNEL_LEN + 0x08))
-#define REG_TMR_COUNTER_HI(x)       (*(vu16 *)(TMR_REG_BASE + (x) * TMR_CHANNEL_LEN + 0x0A))
+#define REG_TMR_COUNTER_LO(x) (*(vu16 *)(TMR_REG_BASE + TMR_CHANNEL_LEN * (x) + 0x08))
+#define REG_TMR_COUNTER_HI(x) (*(vu16 *)(TMR_REG_BASE + TMR_CHANNEL_LEN * (x) + 0x0A))
 
-#define REG_TMR_PWM_RELOAD_LO(x)    (*(vu16 *)(TMR_REG_BASE + (x) * TMR_CHANNEL_LEN + 0x0C))
-#define REG_TMR_PWM_RELOAD_HI(x)    (*(vu16 *)(TMR_REG_BASE + (x) * TMR_CHANNEL_LEN + 0x0E))
+#define REG_TMR_PWM_RELOAD_LO(x) (*(vu16 *)(TMR_REG_BASE + TMR_CHANNEL_LEN * (x) + 0x0C))
+#define REG_TMR_PWM_RELOAD_HI(x) (*(vu16 *)(TMR_REG_BASE + TMR_CHANNEL_LEN * (x) + 0x0E))
 
 /// Starts a timer with the specified starting value.
 ///

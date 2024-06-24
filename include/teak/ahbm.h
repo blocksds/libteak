@@ -22,46 +22,46 @@ extern "C" {
 #include <teak/types.h>
 
 /// AHBM Status (R)
-#define REG_AHBM_STATUS                     (*(vu16 *)0x80E0)
+#define REG_AHBM_STATUS (*(vu16 *)0x80E0)
 // Applications wait for all bits to be 0 before connecting AHBM to DMA.
 
-#define AHBM_STATUS_QUEUE_BUSY              BIT(2) // Inverted HREADY?
-#define AHBM_STATUS_ERROR                   BIT(4) // HRESP? 3DS only?
+#define AHBM_STATUS_QUEUE_BUSY BIT(2) // Inverted HREADY?
+#define AHBM_STATUS_ERROR      BIT(4) // HRESP? 3DS only?
 
 /// AHBM Channel 0..2 Configure Burst/Data (R/W)
-#define REG_AHBM_CH_CFG1(n)                 (*(vu16 *)(0x80E2 + (n) * 6))
+#define REG_AHBM_CH_CFG1(n) (*(vu16 *)(0x80E2 + 6 * (n)))
 
-#define AHBM_CH_CFG1_BURST_SINGLE           (0 << 0) // HBURST[2:0]
-#define AHBM_CH_CFG1_BURST_INCR             (1 << 0)
-#define AHBM_CH_CFG1_BURST_WRAP4            (2 << 0)
-#define AHBM_CH_CFG1_BURST_INCR4            (3 << 0)
-#define AHBM_CH_CFG1_BURST_WRAP8            (4 << 0)
-#define AHBM_CH_CFG1_BURST_INCR8            (5 << 0)
+#define AHBM_CH_CFG1_BURST_SINGLE (0 << 0) // HBURST[2:0]
+#define AHBM_CH_CFG1_BURST_INCR   (1 << 0)
+#define AHBM_CH_CFG1_BURST_WRAP4  (2 << 0)
+#define AHBM_CH_CFG1_BURST_INCR4  (3 << 0)
+#define AHBM_CH_CFG1_BURST_WRAP8  (4 << 0)
+#define AHBM_CH_CFG1_BURST_INCR8  (5 << 0)
 // - WRAP16 and INCR16 are not supported or so and act like INCR mode.
 // - Bit 3 hangs if no burst is used.
 
-#define AHBM_CH_CFG1_SIZE_8BIT              (0 << 4) // HSIZE[2:0]
-#define AHBM_CH_CFG1_SIZE_16BIT             (1 << 4)
-#define AHBM_CH_CFG1_SIZE_32BIT             (2 << 4)
+#define AHBM_CH_CFG1_SIZE_8BIT  (0 << 4) // HSIZE[2:0]
+#define AHBM_CH_CFG1_SIZE_16BIT (1 << 4)
+#define AHBM_CH_CFG1_SIZE_32BIT (2 << 4)
 // - Bit 6 is probably the MSB of the HSIZE signal, but since the bus is only
 //   32 bit, that bit is ignored.
 // - Bit 7 may be HMASTLOCK, as GBATEK mentions it hangs the transfer.
 // - Bits 8-11 may be HPROT, which is most likely unused on the DSi.
 
 /// AHBM Channel 0..2 Configure Whatever (R/W)
-#define REG_AHBM_CH_CFG2(n)                 (*(vu16 *)(0x80E4 + (n) * 6))
+#define REG_AHBM_CH_CFG2(n) (*(vu16 *)(0x80E4 + 6 * (n)))
 
-#define AHBM_CH_CFG2_READ                   (0 << 8) ///< Read external memory
-#define AHBM_CH_CFG2_WRITE                  (1 << 8) ///< HWRITE. Write external memory
+#define AHBM_CH_CFG2_READ  (0 << 8) ///< Read external memory
+#define AHBM_CH_CFG2_WRITE (1 << 8) ///< HWRITE. Write external memory
 
 // Applications always set this to 1 (but also works when 0). It may be HNONSEC,
 // which is probably not used in DSi, but still connected.
-#define AHBM_CH_CFG2_USUALLY_ONE            BIT(9)
+#define AHBM_CH_CFG2_USUALLY_ONE BIT(9)
 
 /// AHBM Channel 0..2 Configure DMA (R/W)
-#define REG_AHBM_CH_CFG_DMA(n)              (*(vu16 *)(0x80E6 + (n) * 6))
+#define REG_AHBM_CH_CFG_DMA(n) (*(vu16 *)(0x80E6 + 6 * (n)))
 
-#define AHBM_CH_CFG_DMA_CONNECT_CH(n)       BIT(n)
+#define AHBM_CH_CFG_DMA_CONNECT_CH(n) BIT(n)
 
 /// Checks whether any AHBM channel is busy.
 ///
@@ -81,8 +81,8 @@ static inline void ahbmConfigChannel(int channel, u16 a, u16 b, u16 dma_channel_
 {
     REG_AHBM_CH_CFG_DMA(channel) = 0;
 
-    REG_AHBM_CH_CFG1(channel) = a;
-    REG_AHBM_CH_CFG2(channel) = b;
+    REG_AHBM_CH_CFG1(channel)    = a;
+    REG_AHBM_CH_CFG2(channel)    = b;
     REG_AHBM_CH_CFG_DMA(channel) = dma_channel_mask;
 }
 

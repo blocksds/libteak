@@ -29,7 +29,7 @@ void btdmpSetupOutputSpeakers(int channel, int irq_index)
             REG_ICU_IRQ_INT0 = ICU_IRQ_MASK_BTDMP0;
         else if (irq_index == 1)
             REG_ICU_IRQ_INT1 = ICU_IRQ_MASK_BTDMP0;
-        else //if (irq_index == 2)
+        else // if (irq_index == 2)
             REG_ICU_IRQ_INT2 = ICU_IRQ_MASK_BTDMP0;
 
         REG_ICU_IRQ_MODE &= ~ICU_IRQ_MASK_BTDMP0;
@@ -55,7 +55,7 @@ void btdmpSetupOutputSpeakers(int channel, int irq_index)
             REG_ICU_IRQ_INT0 = ICU_IRQ_MASK_BTDMP1;
         else if (irq_index == 1)
             REG_ICU_IRQ_INT1 = ICU_IRQ_MASK_BTDMP1;
-        else //if (irq_index == 2)
+        else // if (irq_index == 2)
             REG_ICU_IRQ_INT2 = ICU_IRQ_MASK_BTDMP1;
 
         REG_ICU_IRQ_MODE &= ~ICU_IRQ_MASK_BTDMP1;
@@ -117,7 +117,7 @@ void btdmpSetupInputMicrophone(int channel, int irq_index)
             REG_ICU_IRQ_INT0 = ICU_IRQ_MASK_BTDMP0;
         else if (irq_index == 1)
             REG_ICU_IRQ_INT1 = ICU_IRQ_MASK_BTDMP0;
-        else //if (irq_index == 2)
+        else // if (irq_index == 2)
             REG_ICU_IRQ_INT2 = ICU_IRQ_MASK_BTDMP0;
 
         REG_ICU_IRQ_MODE &= ~ICU_IRQ_MASK_BTDMP0;
@@ -143,7 +143,7 @@ void btdmpSetupInputMicrophone(int channel, int irq_index)
             REG_ICU_IRQ_INT0 = ICU_IRQ_MASK_BTDMP1;
         else if (irq_index == 1)
             REG_ICU_IRQ_INT1 = ICU_IRQ_MASK_BTDMP1;
-        else //if (irq_index == 2)
+        else // if (irq_index == 2)
             REG_ICU_IRQ_INT2 = ICU_IRQ_MASK_BTDMP1;
 
         REG_ICU_IRQ_MODE &= ~ICU_IRQ_MASK_BTDMP1;
@@ -152,7 +152,7 @@ void btdmpSetupInputMicrophone(int channel, int irq_index)
         REG_ICU_IRQ_ACK = ICU_IRQ_MASK_BTDMP1;
 
         btdmpEnableReceive(1);
-     }
+    }
 }
 
 void btdmpDisableInput(int channel)
@@ -180,5 +180,5 @@ void btdmpDisableInput(int channel)
         REG_ICU_IRQ_INT0 = ICU_IRQ_MASK_BTDMP1;
         REG_ICU_IRQ_INT1 = ICU_IRQ_MASK_BTDMP1;
         REG_ICU_IRQ_INT2 = ICU_IRQ_MASK_BTDMP1;
-     }
+    }
 }
