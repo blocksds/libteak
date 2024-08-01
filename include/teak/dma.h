@@ -115,11 +115,17 @@ void dmaInit(void);
 /// This function can't copy data crossing a 1KB boundary on the ARM9 side
 /// because of limitations of the AHBM bus.
 ///
-/// @param dma_channel The DMA channel to use (1 to 7, 0 isn't allowed).
-/// @param src Source address in the ARM9 memory map.
-/// @param dst Destination address in the DSP data memory.
-/// @param len Length of the copy in DSP words.
-/// @return It returns 0 on success, other values on error.
+/// @param dma_channel
+///     The DMA channel to use (1 to 7, 0 isn't allowed).
+/// @param src
+///     Source address in the ARM9 memory map.
+/// @param dst
+///     Destination address in the DSP data memory.
+/// @param len
+///     Length of the copy in DSP words.
+///
+/// @return
+///     It returns 0 on success, other values on error.
 s16 dmaTransferArm9ToDsp(u16 dma_channel, u32 src, void *dst, u16 len);
 
 /// Starts a transfer of data from the ARM9 memory map to the DSP data memory.
@@ -135,11 +141,17 @@ s16 dmaTransferArm9ToDsp(u16 dma_channel, u32 src, void *dst, u16 len);
 /// Use dmaTransferIsRunning() to verify if the transfer has finished or not, or
 /// dmaTransferWaitDone() to wait until it's done.
 ///
-/// @param dma_channel The DMA channel to use (1 to 7, 0 isn't allowed).
-/// @param src Source address in the ARM9 memory map.
-/// @param dst Destination address in the DSP data memory.
-/// @param len Length of the copy in DSP words.
-/// @return It returns 0 on success, other values on error.
+/// @param dma_channel
+///     The DMA channel to use (1 to 7, 0 isn't allowed).
+/// @param src
+///     Source address in the ARM9 memory map.
+/// @param dst
+///     Destination address in the DSP data memory.
+/// @param len
+///     Length of the copy in DSP words.
+///
+/// @return
+///     It returns 0 on success, other values on error.
 s16 dmaTransferArm9ToDspAsync(u16 dma_channel, u32 src, void *dst, u16 len);
 
 /// Transfer data from DSP data memory to the ARM9 memory map.
@@ -152,11 +164,17 @@ s16 dmaTransferArm9ToDspAsync(u16 dma_channel, u32 src, void *dst, u16 len);
 /// This function can't copy data crossing a 1KB boundary on the ARM9 side
 /// because of limitations of the AHBM bus.
 ///
-/// @param dma_channel The DMA channel to use (1 to 7, 0 isn't allowed).
-/// @param src Source address in the DSP data memory.
-/// @param dst Destination address in the ARM9 memory map.
-/// @param len Length of the copy in DSP words.
-/// @return It returns 0 on success, other values on error.
+/// @param dma_channel
+///     The DMA channel to use (1 to 7, 0 isn't allowed).
+/// @param src
+///     Source address in the DSP data memory.
+/// @param dst
+///     Destination address in the ARM9 memory map.
+/// @param len
+///     Length of the copy in DSP words.
+///
+/// @return
+///     It returns 0 on success, other values on error.
 s16 dmaTransferDspToArm9(u16 dma_channel, const void *src, u32 dst, u16 len);
 
 /// Starts a transfer of data from DSP data memory to the ARM9 memory map.
@@ -172,17 +190,26 @@ s16 dmaTransferDspToArm9(u16 dma_channel, const void *src, u32 dst, u16 len);
 /// Use dmaTransferIsRunning() to verify if the transfer has finished or not, or
 /// dmaTransferWaitDone() to wait until it's done.
 ///
-/// @param dma_channel The DMA channel to use (1 to 7, 0 isn't allowed).
-/// @param src Source address in the DSP data memory.
-/// @param dst Destination address in the ARM9 memory map.
-/// @param len Length of the copy in DSP words.
-/// @return It returns 0 on success, other values on error.
+/// @param dma_channel
+///     The DMA channel to use (1 to 7, 0 isn't allowed).
+/// @param src
+///     Source address in the DSP data memory.
+/// @param dst
+///     Destination address in the ARM9 memory map.
+/// @param len
+///     Length of the copy in DSP words.
+///
+/// @return
+///     It returns 0 on success, other values on error.
 s16 dmaTransferDspToArm9Async(u16 dma_channel, const void *src, u32 dst, u16 len);
 
 /// Checks whether a DMA channel is active or not.
 ///
-/// @param dma_channel The DMA channel to check (1 to 7, 0 isn't allowed).
-/// @return It returns 1 if the DMA channel is busy, 0 if not.
+/// @param dma_channel
+///     The DMA channel to check (1 to 7, 0 isn't allowed).
+///
+/// @return
+///     It returns 1 if the DMA channel is busy, 0 if not.
 static inline u16 dmaTransferIsRunning(u16 dma_channel)
 {
     if (dma_channel == 0)
@@ -194,7 +221,8 @@ static inline u16 dmaTransferIsRunning(u16 dma_channel)
 
 /// Waits until a DMA channel is no longer active because the copy has finished.
 ///
-/// @param dma_channel The DMA channel to check (1 to 7, 0 isn't allowed).
+/// @param dma_channel
+///     The DMA channel to check (1 to 7, 0 isn't allowed).
 static inline void dmaTransferWaitDone(u16 dma_channel)
 {
     while (dmaTransferIsRunning(dma_channel))

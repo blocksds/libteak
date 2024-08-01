@@ -111,13 +111,16 @@ static inline void btdmpFlushReceiveFifo(int channel)
 /// soundExtSetRatio(4);
 /// ```
 ///
-/// @param channel The BTDMP channel to use.
-/// @param irq_index The CPU interrupt to use (0 to 2).
+/// @param channel
+///     The BTDMP channel to use.
+/// @param irq_index
+///     The CPU interrupt to use (0 to 2).
 void btdmpSetupOutputSpeakers(int channel, int irq_index);
 
 /// Disables audio output from a BTDMP channel.
 ///
-/// @param channel The BTDMP channel to disable.
+/// @param channel
+///     The BTDMP channel to disable.
 void btdmpDisableOutput(int channel);
 
 /// Setups a BTDMP channel to record audio from the DS microphone.
@@ -132,19 +135,25 @@ void btdmpDisableOutput(int channel);
 /// soundMicPowerOff();
 /// ```
 ///
-/// @param channel The BTDMP channel to use.
-/// @param irq_index The CPU interrupt to use (0 to 2).
+/// @param channel
+///     The BTDMP channel to use.
+/// @param irq_index
+///     The CPU interrupt to use (0 to 2).
 void btdmpSetupInputMicrophone(int channel, int irq_index);
 
 /// Disables audio recording from a BTDMP channel.
 ///
-/// @param channel The BTDMP channel to disable.
+/// @param channel
+///     The BTDMP channel to disable.
 void btdmpDisableInput(int channel);
 
 /// Checks if the transmit FIFO of a BTDMP channel is full or not.
 ///
-/// @param channel The BTDMP channel to check.
-/// @return 1 if the FIFO is full, 0 otherwise.
+/// @param channel
+///     The BTDMP channel to check.
+///
+/// @return
+///     1 if the FIFO is full, 0 otherwise.
 static inline int btdmpTransmitFifoFull(int channel)
 {
     if (REG_BTDMP_TRANSMIT_FIFO_STAT(channel) & BTDMP_TRANSMIT_FIFO_STAT_FULL)
@@ -155,8 +164,11 @@ static inline int btdmpTransmitFifoFull(int channel)
 
 /// Checks if the receive FIFO of a BTDMP channel is empty or not.
 ///
-/// @param channel The BTDMP channel to check.
-/// @return 1 if the FIFO is empty, 0 otherwise.
+/// @param channel
+///     The BTDMP channel to check.
+///
+/// @return
+///     1 if the FIFO is empty, 0 otherwise.
 static inline int btdmpReceiveFifoEmpty(int channel)
 {
     if (REG_BTDMP_RECEIVE_FIFO_STAT(channel) & BTDMP_RECEIVE_FIFO_STAT_NOT_EMPTY)

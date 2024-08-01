@@ -65,7 +65,8 @@ extern "C" {
 
 /// Checks whether any AHBM channel is busy.
 ///
-/// @return Returns 1 if any AHBM channel is busy, 0 otherwise.
+/// @return
+///     Returns 1 if any AHBM channel is busy, 0 otherwise.
 static inline u16 ahbmIsBusy(void)
 {
     return (REG_AHBM_STATUS & AHBM_STATUS_QUEUE_BUSY) ? 1 : 0;
@@ -73,10 +74,14 @@ static inline u16 ahbmIsBusy(void)
 
 /// Sets up an AHBM channel.
 ///
-/// @param channel The AHBM channel to setup.
-/// @param a First configuration setting.
-/// @param b Second configuration setting.
-/// @param dma_channel_mask The DMA channels to assign to this AHBM channel.
+/// @param channel
+///     The AHBM channel to setup.
+/// @param a
+///     First configuration setting.
+/// @param b
+///     Second configuration setting.
+/// @param dma_channel_mask
+///     The DMA channels to assign to this AHBM channel.
 static inline void ahbmConfigChannel(int channel, u16 a, u16 b, u16 dma_channel_mask)
 {
     REG_AHBM_CH_CFG_DMA(channel) = 0;
@@ -88,7 +93,8 @@ static inline void ahbmConfigChannel(int channel, u16 a, u16 b, u16 dma_channel_
 
 /// Resets an AHBM channel.
 ///
-/// @param channel The AHBM channel to setup.
+/// @param channel
+///     The AHBM channel to setup.
 static inline void ahbmResetChannel(int channel)
 {
     REG_AHBM_CH_CFG_DMA(channel) = 0;

@@ -90,7 +90,8 @@ extern "C" {
 
 /// Sets semaphore flags to be seen by the ARM9 in REG_DSP_SEM.
 ///
-/// @param mask Bits to set on top of the currently set bits.
+/// @param mask
+///     Bits to set on top of the currently set bits.
 static inline void apbpSetSemaphore(uint16_t mask)
 {
     // Note that if we simply write the mask we will clear any semaphore that
@@ -100,7 +101,8 @@ static inline void apbpSetSemaphore(uint16_t mask)
 
 /// Clears semaphore flags to be seen by the ARM9 in REG_DSP_SEM.
 ///
-/// @param mask Bits to clear.
+/// @param mask
+///     Bits to clear.
 static inline void apbpClearSemaphore(uint16_t mask)
 {
     REG_APBP_PSEM &= ~mask;
@@ -108,7 +110,8 @@ static inline void apbpClearSemaphore(uint16_t mask)
 
 /// Masks interrupts caused by ARM-to-DSP semaphores.
 ///
-/// @param mask Bits set to 1 will disable interrupts for that semaphore.
+/// @param mask
+///     Bits set to 1 will disable interrupts for that semaphore.
 static inline void apbpSetSemaphoreIrqMask(uint16_t mask)
 {
     REG_APBP_PMASK = mask;
@@ -116,7 +119,8 @@ static inline void apbpSetSemaphoreIrqMask(uint16_t mask)
 
 /// Clears semaphore bits that the ARM9 has set in REG_DSP_PSEM.
 ///
-/// @param mask Bits to clear.
+/// @param mask
+///     Bits to clear.
 static inline void apbpAckSemaphore(uint16_t mask)
 {
     REG_APBP_PCLEAR = mask;
@@ -124,7 +128,8 @@ static inline void apbpAckSemaphore(uint16_t mask)
 
 /// Gets semaphore bits that the ARM9 has set in REG_DSP_PSEM.
 ///
-/// @return Bits set by the ARM9 to 1.
+/// @return
+///     Bits set by the ARM9 to 1.
 static inline uint16_t apbpGetSemaphore(void)
 {
     return REG_APBP_SEM;
@@ -135,8 +140,10 @@ static inline uint16_t apbpGetSemaphore(void)
 /// If there is alredy a value in that register it will wait until the ARM9 has
 /// read it.
 ///
-/// @param id 0 to 2 for REG_APBP_CMD0 to REG_APBP_CMD2.
-/// @param data Data to write.
+/// @param id
+///     0 to 2 for REG_APBP_CMD0 to REG_APBP_CMD2.
+/// @param data
+///     Data to write.
 void apbpSendData(uint16_t id, uint16_t data);
 
 /// Reads data preent in one of the REG_APBP_REPx registers.
@@ -144,8 +151,11 @@ void apbpSendData(uint16_t id, uint16_t data);
 /// If there isn't any value in the register it will wait until the ARM9 has
 /// sent any value.
 ///
-/// @param id 0 to 2 for REG_APBP_REP0 to REG_APBP_REP2.
-/// @return Returns the data in that register.
+/// @param id
+///     0 to 2 for REG_APBP_REP0 to REG_APBP_REP2.
+///
+/// @return
+///     Returns the data in that register.
 uint16_t apbpReceiveData(uint16_t id);
 
 #ifdef __cplusplus

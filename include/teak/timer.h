@@ -83,21 +83,28 @@ extern "C" {
 
 /// Starts a timer with the specified starting value.
 ///
-/// @param index Timer index (0 or 1).
-/// @param config Configuration flags.
-/// @param reload_value Starting value. In mode reload, it is also used as
-///                     reload value. It is ignored in freerun mode.
+/// @param index
+///     Timer index (0 or 1).
+/// @param config
+///     Configuration flags.
+/// @param reload_value
+///     Starting value. In mode reload, it is also used as reload value. It is
+///     ignored in freerun mode.
 void timerStart(u16 index, u16 config, u32 reload_value);
 
 /// Safely reads the 32-bit counter value of a timer.
 ///
-/// @param index Timer index (0 or 1).
-/// @return The counter value.
+/// @param index
+///     Timer index (0 or 1).
+///
+/// @return
+///     The counter value.
 u32 timerRead(u16 index);
 
 /// Stops a timer.
 ///
-/// @param index Timer index (0 or 1).
+/// @param index
+///     Timer index (0 or 1).
 static inline void timerStop(u16 index)
 {
     REG_TMR_CONTROL(index) = TMR_CONTROL_PAUSE;

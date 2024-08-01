@@ -68,13 +68,16 @@ void icuInit(void);
 ///
 /// The interrupt is setup as edge-triggered and normal polarity.
 ///
-/// @param mask Interrupt mask. For example, ICU_IRQ_MASK_APBP.
-/// @param index CPU interrupt to be triggered for the specified mask (0 to 2).
+/// @param mask
+///     Interrupt mask. For example, ICU_IRQ_MASK_APBP.
+/// @param index
+///     CPU interrupt to be triggered for the specified mask (0 to 2).
 void icuIrqSetup(u16 mask, int index);
 
 /// Disable a peripheral IRQ.
 ///
-/// @param mask Interrupt mask. For example, ICU_IRQ_MASK_APBP.
+/// @param mask
+///     Interrupt mask. For example, ICU_IRQ_MASK_APBP.
 void icuIrqDisable(u16 mask);
 
 #ifdef __cplusplus
