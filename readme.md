@@ -7,7 +7,7 @@ DSi and 3DS consoles. It is provided as part of
 [BlocksDS](https://github.com/blocksds/sdk), but it can also be used as a
 standalone library.
 
-- [Documentation](https://blocksds.github.io/docs/libteak/index.html)
+- [Documentation](https://blocksds.skylyrac.net/docs/libteak/index.html)
 - [Examples](https://github.com/blocksds/sdk/tree/master/examples/dsp)
 
 ## 2. Setup
