@@ -10,6 +10,8 @@ standalone library.
 - [Documentation](https://blocksds.skylyrac.net/docs/libteak/index.html)
 - [Examples](https://github.com/blocksds/sdk/tree/master/examples/dsp)
 
+Please, report issues [here](https://github.com/blocksds/sdk/issues).
+
 ## 2. Setup
 
 The Teak toolchain is currently only distributed by
