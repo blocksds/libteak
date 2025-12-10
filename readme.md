@@ -16,12 +16,12 @@ Please, report issues [here](https://github.com/blocksds/sdk/issues).
 
 The Teak toolchain is currently only distributed by
 [Wonderful Toolchain](https://wonderful.asie.pl). You will need to install the
-Teak toolchain of Wonderful Toolchains. Follow the instructions in this link:
+Teak toolchain of Wonderful Toolchain. Follow the instructions in this link:
 https://wonderful.asie.pl/docs/getting-started/
 
 Note that the Teak toolchain is currently only available on Linux, not Windows.
 
-Now, install the Teak toolchain of Wonderful Toolchains:
+Now, install the Teak toolchain of Wonderful Toolchain:
 
 ```bash
 wf-pacman -Syu
