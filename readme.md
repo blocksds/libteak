@@ -4,13 +4,13 @@
 
 This is a library to help develop applications for the DSP that comes with the
 DSi and 3DS consoles. It is provided as part of
-[BlocksDS](https://github.com/blocksds/sdk), but it can also be used as a
+[BlocksDS](https://blocksds.skylyrac.net), but it can also be used as a
 standalone library.
 
 - [Documentation](https://blocksds.skylyrac.net/libteak/index.html)
-- [Examples](https://github.com/blocksds/sdk/tree/master/examples/dsp)
+- [Examples](https://codeberg.org/blocksds/sdk/src/branch/master/examples/dsp)
 
-Please, report issues [here](https://github.com/blocksds/sdk/issues).
+Please, report issues [here](https://codeberg.org/blocksds/sdk/issues).
 
 ## 2. Setup
 
